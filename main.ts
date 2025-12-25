@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const Mapa = SpriteKind.create()
+    export const Apuntes = SpriteKind.create()
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -26,9 +27,27 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     )
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mini_mapa = minimap.minimap(MinimapScale.Half, 2, 0)
-    ventana_mini_mapa = sprites.create(minimap.getImage(mini_mapa), SpriteKind.Mapa)
-    ventana_mini_mapa.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+    if (mini_mapa_abierto == true) {
+        sprites.destroy(ventana_mini_mapa)
+        mini_mapa_abierto = false
+    } else {
+        let tercer_profesor: Sprite = null
+        let segundo_profesor: Sprite = null
+        let primer_profesor: Sprite = null
+        let alumno: Sprite = null
+        mini_mapa = minimap.minimap(MinimapScale.Quarter, 2, 15)
+        ventana_mini_mapa = sprites.create(minimap.getImage(mini_mapa), SpriteKind.Mapa)
+        ventana_mini_mapa.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+        ventana_mini_mapa.z = 5
+        mini_mapa_abierto = true
+        for (let paginas_apuntes of sprites.allOfKind(SpriteKind.Apuntes)) {
+            minimap.includeSprite(mini_mapa, paginas_apuntes, MinimapSpriteScale.Double)
+        }
+        minimap.includeSprite(mini_mapa, alumno, MinimapSpriteScale.Quadruple)
+        minimap.includeSprite(mini_mapa, primer_profesor, MinimapSpriteScale.Double)
+        minimap.includeSprite(mini_mapa, segundo_profesor, MinimapSpriteScale.Double)
+        minimap.includeSprite(mini_mapa, tercer_profesor, MinimapSpriteScale.Double)
+    }
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -38,9 +57,11 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
-let ventana_mini_mapa: Sprite = null
 let mini_mapa: minimap.Minimap = null
+let ventana_mini_mapa: Sprite = null
 let nena: Sprite = null
+let mini_mapa_abierto = false
+mini_mapa_abierto = false
 nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 tiles.placeOnRandomTile(nena, assets.tile`miMosaico9`)
 controller.moveSprite(nena)
