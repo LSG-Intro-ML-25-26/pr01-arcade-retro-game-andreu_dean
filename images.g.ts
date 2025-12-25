@@ -41,25 +41,6 @@ f f f c 3 c c c c 3 c f f f
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `;
-            case "image4":
-            case "miImagen1":return img`
-. . . . . f f f f f f f f . . . 
-. . . . f 1 1 1 1 1 d d d f f . 
-. . . f 1 1 1 1 1 1 1 d d d d f 
-. . . f 1 8 8 8 8 8 8 8 d d d f 
-. . . f 1 1 1 1 1 1 1 d d d f . 
-. . . f 1 8 8 8 1 1 d d d f . . 
-. . . f 1 1 1 1 1 1 1 1 d f . . 
-. . . f 1 8 8 8 8 8 8 d d f . . 
-. . . f 1 1 1 1 1 d d d d f . . 
-. . . f 1 8 8 8 8 8 d d d f . . 
-. . f b b b b b b d d d d f . . 
-. f d d d d d d d b d d d f . . 
-. f d d d d d d d b d d d f . . 
-. f d d d d d d d b d d d f . . 
-. . f d d d d d d d b d f . . . 
-. . . f f f f f f f f f . . . . 
-`;
             case "image3":
             case "miImagen0":return img`
 . . . . . . . . . . . . . . . . 
@@ -78,6 +59,18 @@ f f f c 3 c c c c 3 c f f f
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+`;
+            case "image4":
+            case "miImagen1":return img`
+1 2 1 1 1 1 1 1 1 
+1 2 1 8 8 8 8 8 1 
+1 2 1 1 1 1 1 1 1 
+1 2 1 8 8 1 1 1 1 
+1 2 1 1 1 1 1 1 1 
+1 2 1 8 8 8 8 1 1 
+1 2 1 1 1 1 1 1 1 
+1 2 1 8 8 8 8 8 1 
+1 2 1 1 1 1 1 1 1 
 `;
         }
         return null;
