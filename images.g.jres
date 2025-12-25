@@ -4,6 +4,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "nena-front"
     },
+    "image2": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "miImagen"
+    },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "miImagen0"
+    },
     "anim1": {
         "namespace": "myAnimations",
         "id": "anim1",
@@ -31,6 +41,12 @@
         "mimeType": "application/mkcd-animation",
         "data": "ZjQwMTBlMDAxMDAwMDMwMDAwMDAwMDAwMDAwMDAwZjBmZmYwZmZmZjAwMDBmZmZmY2ZjY2ZjMGYwMGZmZmZjYmNjY2NmYzAwZmZjZmMzY2NjY2ZjMDBmMDMzY2NjY2NjY2MwZmYwZmZjY2NjNGNjYzBmZjBmZmNmY2M0NGZjMGZmMDRmZjRmYjQ0ZmYwZmYwNGY0ZGYxZGRmYzAwMDBmZjRmZGRkZDBmMDAwMGQ0ZWQ0NGU0MGYwMDAwZGVlZDMzMzMwZjAwMDBlZmZlNjY2NmZmMDAwMGZmZmZmZmZmZmYwMDAwZjAwZjAwZmYwZjAwMDAwMDAwMDAwMDAwMDBmMGZmZjBmZmZmMDAwMGZmZmZjZmNjZmMwZjAwZmZmZmNiY2NjY2ZjMDBmZmNmYzNjY2NjZmMwMGYwMzNjY2NjY2NjYzBmZjBmZmNjY2M0Y2NjMGZmMGZmY2ZjYzQ0ZmMwZmYwNGZmNGZiNDRmZjBmMDA0ZjRkZjFkZGZmMDAwMGZmZWZkZWRkMGYwMDAwZjBkNGVkZTQwZjAwMDBmMGRlZWQzMzBmMDAwMGZmZWZmZTY2ZmYwMDAwZmZmZmZmZmZmZjAwMDBmMDBmMDBmZjBmMDBmMGZmZjBmZmZmMDAwMGZmZmZjZmNjZmMwZjAwZmZmZmNiY2NjY2ZjMDBmZmNmYzNjY2NjZmMwMGYwMzNjY2NjY2NjYzBmZjBmZmNjY2M0Y2NjMGZmMGZmY2ZjYzQ0ZmUwZmYwNGZmNGZiNDRmZTBmMDA0ZjRkZjFkZGZmMDAwMGZmNGZkZGRkMGYwMDAwZjBlZTQ0ZTQwZjAwMDA0MGRkM2UzMzBmMDAwMGUwZGQzZTMzMGYwMDAwZjBlZTZmNjYwZjAwMDAwMGZmZmZmZjAwMDAwMDAwZjBmZjAwMDAwMA==",
         "displayName": "nena-animation-right"
+    },
+    "song1": {
+        "data": "00780004080200",
+        "mimeType": "application/mkcd-song",
+        "displayName": "miCancion",
+        "namespace": "mySongs."
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",
