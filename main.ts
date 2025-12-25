@@ -2,6 +2,15 @@ namespace SpriteKind {
     export const Mapa = SpriteKind.create()
     export const Apuntes = SpriteKind.create()
 }
+function generar_apuntes () {
+    total_apuntes = 0
+    apuntes_recogidos = 0
+    for (let posicion of tiles.getTilesByType(assets.tile`miMosaico9`)) {
+        apunte = sprites.create(assets.image`miImagen1`, SpriteKind.Apuntes)
+        tiles.placeOnTile(apunte, posicion)
+        total_apuntes += 1
+    }
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     nena,
@@ -59,11 +68,16 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 let mini_mapa: minimap.Minimap = null
 let ventana_mini_mapa: Sprite = null
+let apunte: Sprite = null
+let apuntes_recogidos = 0
+let total_apuntes = 0
 let nena: Sprite = null
 let mini_mapa_abierto = false
 mini_mapa_abierto = false
 nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+nena.z = 6
 tiles.placeOnRandomTile(nena, assets.tile`miMosaico9`)
 controller.moveSprite(nena)
 tiles.setCurrentTilemap(tilemap`nivel1`)
 scene.cameraFollowSprite(nena)
+generar_apuntes()
