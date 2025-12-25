@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const Mapa = SpriteKind.create()
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     nena,
@@ -22,6 +25,10 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    mini_mapa = minimap.minimap(MinimapScale.Half, 2, 0)
+    enemigo = sprites.create(minimap.getImage(mini_mapa), SpriteKind.Mapa)
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     nena,
@@ -30,6 +37,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
+let enemigo: Sprite = null
+let mini_mapa: minimap.Minimap = null
 let nena: Sprite = null
 nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
 tiles.placeOnRandomTile(nena, assets.tile`miMosaico9`)
