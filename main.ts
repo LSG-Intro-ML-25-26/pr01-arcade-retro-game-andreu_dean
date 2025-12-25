@@ -27,7 +27,8 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mini_mapa = minimap.minimap(MinimapScale.Half, 2, 0)
-    enemigo = sprites.create(minimap.getImage(mini_mapa), SpriteKind.Mapa)
+    ventana_mini_mapa = sprites.create(minimap.getImage(mini_mapa), SpriteKind.Mapa)
+    ventana_mini_mapa.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -37,7 +38,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
-let enemigo: Sprite = null
+let ventana_mini_mapa: Sprite = null
 let mini_mapa: minimap.Minimap = null
 let nena: Sprite = null
 nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
