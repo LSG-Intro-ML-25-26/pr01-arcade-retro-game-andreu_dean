@@ -69,6 +69,7 @@ function crear_primer_profesor () {
         ........................
         `)
     tiles.placeOnTile(primer_profesor, tiles.getTileLocation(8, 10))
+    spawn_primer_profesor = primer_profesor.tilemapLocation()
 }
 function crear_segundo_profesor () {
     segundo_profesor = sprites.create(img`
@@ -108,6 +109,7 @@ function crear_segundo_profesor () {
         . . . . . f f . . f f . . . . . 
         `)
     tiles.placeOnTile(segundo_profesor, tiles.getTileLocation(9, 10))
+    spawn_segundo_profesor = segundo_profesor.tilemapLocation()
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -117,6 +119,87 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
+function mover_segundo_profesor () {
+    if (camino_segundo_profesor == 1) {
+        if (!(segundo_profesor.tileKindAt(TileDirection.Right, assets.tile`miMosaico`))) {
+            segundo_profesor.x += 1
+        } else {
+            camino_segundo_profesor = opuesto(camino_segundo_profesor)
+        }
+    } else if (camino_segundo_profesor == 2) {
+        if (!(segundo_profesor.tileKindAt(TileDirection.Left, assets.tile`miMosaico`))) {
+            segundo_profesor.x += -1
+        } else {
+            camino_segundo_profesor = opuesto(camino_segundo_profesor)
+        }
+    } else if (camino_segundo_profesor == 3) {
+        if (!(segundo_profesor.tileKindAt(TileDirection.Top, assets.tile`miMosaico`))) {
+            segundo_profesor.y += -1
+        } else {
+            camino_segundo_profesor = opuesto(camino_segundo_profesor)
+        }
+    } else if (camino_segundo_profesor == 4) {
+        if (!(segundo_profesor.tileKindAt(TileDirection.Bottom, assets.tile`miMosaico`))) {
+            segundo_profesor.y += 1
+        } else {
+            camino_segundo_profesor = opuesto(camino_segundo_profesor)
+        }
+    }
+}
+function mover_tercer_profesor () {
+    if (camino_tercer_profesor == 1) {
+        if (!(tercer_profesor.tileKindAt(TileDirection.Right, assets.tile`miMosaico`))) {
+            tercer_profesor.x += 1
+        } else {
+            camino_tercer_profesor = opuesto(camino_tercer_profesor)
+        }
+    } else if (camino_tercer_profesor == 2) {
+        if (!(tercer_profesor.tileKindAt(TileDirection.Left, assets.tile`miMosaico`))) {
+            tercer_profesor.x += -1
+        } else {
+            camino_tercer_profesor = opuesto(camino_tercer_profesor)
+        }
+    } else if (camino_tercer_profesor == 3) {
+        if (!(tercer_profesor.tileKindAt(TileDirection.Top, assets.tile`miMosaico`))) {
+            tercer_profesor.y += -1
+        } else {
+            camino_tercer_profesor = opuesto(camino_tercer_profesor)
+        }
+    } else if (camino_tercer_profesor == 4) {
+        if (!(tercer_profesor.tileKindAt(TileDirection.Bottom, assets.tile`miMosaico`))) {
+            tercer_profesor.y += 1
+        } else {
+            camino_tercer_profesor = opuesto(camino_tercer_profesor)
+        }
+    }
+}
+function mover_primer_profesor () {
+    if (camino_primer_profesor == 1) {
+        if (!(primer_profesor.tileKindAt(TileDirection.Right, assets.tile`miMosaico`))) {
+            primer_profesor.x += 1
+        } else {
+            camino_primer_profesor = opuesto(camino_primer_profesor)
+        }
+    } else if (camino_primer_profesor == 2) {
+        if (!(primer_profesor.tileKindAt(TileDirection.Left, assets.tile`miMosaico`))) {
+            primer_profesor.x += -1
+        } else {
+            camino_primer_profesor = opuesto(camino_primer_profesor)
+        }
+    } else if (camino_primer_profesor == 3) {
+        if (!(primer_profesor.tileKindAt(TileDirection.Top, assets.tile`miMosaico`))) {
+            primer_profesor.y += -1
+        } else {
+            camino_primer_profesor = opuesto(camino_primer_profesor)
+        }
+    } else if (camino_primer_profesor == 4) {
+        if (!(primer_profesor.tileKindAt(TileDirection.Bottom, assets.tile`miMosaico`))) {
+            primer_profesor.y += 1
+        } else {
+            camino_primer_profesor = opuesto(camino_primer_profesor)
+        }
+    }
+}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     nena,
@@ -163,6 +246,7 @@ function crear_tercer_profesor () {
         . . . . . f f b b f f . . . . . 
         `)
     tiles.placeOnTile(tercer_profesor, tiles.getTileLocation(10, 10))
+    spawn_tercer_profesor = tercer_profesor.tilemapLocation()
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -189,6 +273,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.splash("Apuntes a recoger: " + objetivo_apuntes_ronda)
 })
+function opuesto (direccion: number) {
+    if (direccion == 1) {
+        return 2
+    } else if (direccion == 2) {
+        return 1
+    } else if (direccion == 3) {
+        return 4
+    } else {
+        return 3
+    }
+}
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     if (location.column == 0) {
         tiles.placeOnTile(nena, tiles.getTileLocation(18, 15))
@@ -218,20 +313,28 @@ function crear_alumno () {
     nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
     nena.z = 6
     tiles.placeOnTile(nena, tiles.getTileLocation(8, 3))
+    spawn_alumno = nena.tilemapLocation()
     controller.moveSprite(nena, 100, 100)
     scene.cameraFollowSprite(nena)
 }
+let spawn_alumno: tiles.Location = null
 let ventana_mini_mapa: Sprite = null
 let mini_mapa: minimap.Minimap = null
+let spawn_tercer_profesor: tiles.Location = null
 let tercer_profesor: Sprite = null
 let nena: Sprite = null
+let spawn_segundo_profesor: tiles.Location = null
 let segundo_profesor: Sprite = null
+let spawn_primer_profesor: tiles.Location = null
 let primer_profesor: Sprite = null
 let objetivo_apuntes_ronda = 0
 let apunte: Sprite = null
 let porcentaje_spawn = 0
 let apuntes_recogidos = 0
 let total_apuntes = 0
+let camino_tercer_profesor = 0
+let camino_segundo_profesor = 0
+let camino_primer_profesor = 0
 let mini_mapa_abierto = false
 let ronda = 0
 info.setScore(0)
@@ -244,9 +347,17 @@ crear_primer_profesor()
 crear_segundo_profesor()
 crear_tercer_profesor()
 crear_alumno()
+camino_primer_profesor = 1
+camino_segundo_profesor = 1
+camino_tercer_profesor = 1
 game.onUpdate(function () {
     if (mini_mapa_abierto == true) {
         ventana_mini_mapa.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
+    }
+})
+game.onUpdateInterval(500, function () {
+    if (mini_mapa_abierto == false) {
+    	
     }
 })
 game.onUpdateInterval(100, function () {

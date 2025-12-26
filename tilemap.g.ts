@@ -91,7 +91,7 @@ namespace myTiles {
 2.2222.2.2222.2222.2
 2...............2..2
 22222222222222222222
-`, [myTiles.transparency16,myTiles.tile1,myTiles.tile2,myTiles.tile11,sprites.castle.tileDarkGrass3,sprites.castle.tileGrass2], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile1,myTiles.tile2,myTiles.tile11,sprites.castle.tileDarkGrass3,sprites.castle.tileDarkGrass2], TileScale.Sixteen);
         }
         return null;
     })

@@ -99,7 +99,7 @@
             "myTiles.tile2",
             "myTiles.tile11",
             "sprites.castle.tileDarkGrass3",
-            "sprites.castle.tileGrass2"
+            "sprites.castle.tileDarkGrass2"
         ],
         "displayName": "nivel1"
     },
