@@ -21,6 +21,7 @@ function generar_apuntes () {
             total_apuntes += 1
         }
     }
+    objetivo_apuntes_ronda = total_apuntes
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -69,6 +70,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         minimap.includeSprite(mini_mapa, tercer_profesor, MinimapSpriteScale.Double)
     }
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.splash("Apuntes a recoger: " + objetivo_apuntes_ronda)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     if (location.column == 0) {
         tiles.placeOnTile(nena, tiles.getTileLocation(18, 15))
@@ -80,6 +84,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Apuntes, function (sprite, other
     sprites.destroy(otherSprite)
     apuntes_recogidos += 1
     info.changeScoreBy(1)
+    objetivo_apuntes_ronda += -1
     if (apuntes_recogidos == total_apuntes) {
         ronda += 1
         generar_apuntes()
@@ -95,6 +100,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 let mini_mapa: minimap.Minimap = null
 let ventana_mini_mapa: Sprite = null
+let objetivo_apuntes_ronda = 0
 let apunte: Sprite = null
 let porcentaje_spawn = 0
 let apuntes_recogidos = 0
