@@ -1,9 +1,4 @@
 {
-    "image1": {
-        "data": "hwQOABAAAADw/wAAAAAAAP////8P4EQA///D//9OTQD/z8P89P//APA7zLzRvmP/z8zM9N80Y//PzExE3TRjD8/MTETdNGMPz8zM9N80Y//wO8y80b5j///Pw/z0//wA///D//9OTQD/////D+BEAPD/AAAAAAAA",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "nena-front"
-    },
     "image2": {
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
@@ -18,6 +13,11 @@
         "data": "hwQJAAkAAAARERERAQAAACIiIiICAAAAEREREQEAAACBgYGBAQAAAIGBgYEBAAAAgRGBgQEAAACBEYGBAQAAAIEREYEBAAAAEREREQEAAAA=",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "miImagen1"
+    },
+    "image1": {
+        "data": "hwQOABAAAADw/wAAAAAAAP////8P4EQA///D//9OTQD/z8P89P//APA7zLzRvmP/z8zM9N80Y//PzExE3TRjD8/MTETdNGMPz8zM9N80Y//wO8y80b5j///Pw/z0//wA///D//9OTQD/////D+BEAPD/AAAAAAAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "nena-front"
     },
     "anim1": {
         "namespace": "myAnimations",
