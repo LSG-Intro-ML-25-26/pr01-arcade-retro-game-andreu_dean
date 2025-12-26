@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const Mapa = SpriteKind.create()
     export const Apuntes = SpriteKind.create()
+    export const Info = SpriteKind.create()
 }
 function generar_apuntes () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Apuntes)
@@ -68,10 +69,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         minimap.includeSprite(mini_mapa, tercer_profesor, MinimapSpriteScale.Double)
     }
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
+    if (location.column == 0) {
+        tiles.placeOnTile(nena, tiles.getTileLocation(18, 15))
+    } else {
+        tiles.placeOnTile(nena, tiles.getTileLocation(1, 7))
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Apuntes, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
     apuntes_recogidos += 1
-    puntuacion += 1
+    info.changeScoreBy(1)
     if (apuntes_recogidos == total_apuntes) {
         ronda += 1
         generar_apuntes()
@@ -85,7 +93,6 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
-let puntuacion = 0
 let mini_mapa: minimap.Minimap = null
 let ventana_mini_mapa: Sprite = null
 let apunte: Sprite = null
@@ -95,6 +102,8 @@ let total_apuntes = 0
 let nena: Sprite = null
 let mini_mapa_abierto = false
 let ronda = 0
+info.setScore(0)
+info.setLife(3)
 tiles.setCurrentTilemap(tilemap`nivel1`)
 ronda = 1
 mini_mapa_abierto = false
