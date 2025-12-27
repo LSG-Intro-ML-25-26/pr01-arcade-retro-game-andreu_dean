@@ -119,87 +119,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
-function mover_segundo_profesor () {
-    if (camino_segundo_profesor == 1) {
-        if (!(segundo_profesor.tileKindAt(TileDirection.Right, assets.tile`miMosaico`))) {
-            segundo_profesor.x += 1
-        } else {
-            camino_segundo_profesor = opuesto(camino_segundo_profesor)
-        }
-    } else if (camino_segundo_profesor == 2) {
-        if (!(segundo_profesor.tileKindAt(TileDirection.Left, assets.tile`miMosaico`))) {
-            segundo_profesor.x += -1
-        } else {
-            camino_segundo_profesor = opuesto(camino_segundo_profesor)
-        }
-    } else if (camino_segundo_profesor == 3) {
-        if (!(segundo_profesor.tileKindAt(TileDirection.Top, assets.tile`miMosaico`))) {
-            segundo_profesor.y += -1
-        } else {
-            camino_segundo_profesor = opuesto(camino_segundo_profesor)
-        }
-    } else if (camino_segundo_profesor == 4) {
-        if (!(segundo_profesor.tileKindAt(TileDirection.Bottom, assets.tile`miMosaico`))) {
-            segundo_profesor.y += 1
-        } else {
-            camino_segundo_profesor = opuesto(camino_segundo_profesor)
-        }
-    }
-}
-function mover_tercer_profesor () {
-    if (camino_tercer_profesor == 1) {
-        if (!(tercer_profesor.tileKindAt(TileDirection.Right, assets.tile`miMosaico`))) {
-            tercer_profesor.x += 1
-        } else {
-            camino_tercer_profesor = opuesto(camino_tercer_profesor)
-        }
-    } else if (camino_tercer_profesor == 2) {
-        if (!(tercer_profesor.tileKindAt(TileDirection.Left, assets.tile`miMosaico`))) {
-            tercer_profesor.x += -1
-        } else {
-            camino_tercer_profesor = opuesto(camino_tercer_profesor)
-        }
-    } else if (camino_tercer_profesor == 3) {
-        if (!(tercer_profesor.tileKindAt(TileDirection.Top, assets.tile`miMosaico`))) {
-            tercer_profesor.y += -1
-        } else {
-            camino_tercer_profesor = opuesto(camino_tercer_profesor)
-        }
-    } else if (camino_tercer_profesor == 4) {
-        if (!(tercer_profesor.tileKindAt(TileDirection.Bottom, assets.tile`miMosaico`))) {
-            tercer_profesor.y += 1
-        } else {
-            camino_tercer_profesor = opuesto(camino_tercer_profesor)
-        }
-    }
-}
-function mover_primer_profesor () {
-    if (camino_primer_profesor == 1) {
-        if (!(primer_profesor.tileKindAt(TileDirection.Right, assets.tile`miMosaico`))) {
-            primer_profesor.x += 1
-        } else {
-            camino_primer_profesor = opuesto(camino_primer_profesor)
-        }
-    } else if (camino_primer_profesor == 2) {
-        if (!(primer_profesor.tileKindAt(TileDirection.Left, assets.tile`miMosaico`))) {
-            primer_profesor.x += -1
-        } else {
-            camino_primer_profesor = opuesto(camino_primer_profesor)
-        }
-    } else if (camino_primer_profesor == 3) {
-        if (!(primer_profesor.tileKindAt(TileDirection.Top, assets.tile`miMosaico`))) {
-            primer_profesor.y += -1
-        } else {
-            camino_primer_profesor = opuesto(camino_primer_profesor)
-        }
-    } else if (camino_primer_profesor == 4) {
-        if (!(primer_profesor.tileKindAt(TileDirection.Bottom, assets.tile`miMosaico`))) {
-            primer_profesor.y += 1
-        } else {
-            camino_primer_profesor = opuesto(camino_primer_profesor)
-        }
-    }
-}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     nena,
@@ -273,17 +192,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.splash("Apuntes a recoger: " + objetivo_apuntes_ronda)
 })
-function opuesto (direccion: number) {
-    if (direccion == 1) {
-        return 2
-    } else if (direccion == 2) {
-        return 1
-    } else if (direccion == 3) {
-        return 4
-    } else {
-        return 3
-    }
-}
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     if (location.column == 0) {
         tiles.placeOnTile(nena, tiles.getTileLocation(18, 15))
@@ -309,6 +217,9 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
+function perseguir (profesor: Sprite, alumno: Sprite) {
+    profesor.follow(alumno, 40)
+}
 function crear_alumno () {
     nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
     nena.z = 6
@@ -332,9 +243,6 @@ let apunte: Sprite = null
 let porcentaje_spawn = 0
 let apuntes_recogidos = 0
 let total_apuntes = 0
-let camino_tercer_profesor = 0
-let camino_segundo_profesor = 0
-let camino_primer_profesor = 0
 let mini_mapa_abierto = false
 let ronda = 0
 info.setScore(0)
@@ -347,17 +255,9 @@ crear_primer_profesor()
 crear_segundo_profesor()
 crear_tercer_profesor()
 crear_alumno()
-camino_primer_profesor = 1
-camino_segundo_profesor = 1
-camino_tercer_profesor = 1
 game.onUpdate(function () {
     if (mini_mapa_abierto == true) {
         ventana_mini_mapa.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
-    }
-})
-game.onUpdateInterval(500, function () {
-    if (mini_mapa_abierto == false) {
-    	
     }
 })
 game.onUpdateInterval(100, function () {
@@ -370,5 +270,12 @@ game.onUpdateInterval(100, function () {
         minimap.includeSprite(mini_mapa, segundo_profesor, MinimapSpriteScale.Double)
         minimap.includeSprite(mini_mapa, tercer_profesor, MinimapSpriteScale.Double)
         ventana_mini_mapa.z = 7
+    }
+})
+game.onUpdateInterval(100, function () {
+    if (mini_mapa_abierto == false) {
+        perseguir(primer_profesor, nena)
+        perseguir(segundo_profesor, nena)
+        perseguir(tercer_profesor, nena)
     }
 })

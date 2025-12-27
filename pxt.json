@@ -4,7 +4,8 @@
     "dependencies": {
         "device": "*",
         "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1",
-        "arcade-text": "github:microsoft/arcade-text#v1.3.0"
+        "arcade-text": "github:microsoft/arcade-text#v1.3.0",
+        "pxt-skillmap-sample": "github:microsoft/pxt-skillmap-sample#b36c62725e3fe26fca25b64cf158878b5fccd9be"
     },
     "files": [
         "main.blocks",
