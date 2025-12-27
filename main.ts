@@ -289,8 +289,6 @@ function crear_alumno () {
 }
 // FUNCION INICIAR NUEVA RONDA
 function iniciar_ronda () {
-    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
     info.setScore(0)
     apuntes_recogidos = 0
     generar_apuntes()
