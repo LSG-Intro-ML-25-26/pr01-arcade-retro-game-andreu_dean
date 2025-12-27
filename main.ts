@@ -225,8 +225,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     false
     )
 })
-function perseguir (profesor: Sprite, alumno: Sprite) {
-    profesor.follow(alumno, 40)
+function perseguir (profesor: Sprite, alumno: Sprite, vel: number) {
+    profesor.follow(alumno, vel)
 }
 function crear_alumno () {
     nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
@@ -290,9 +290,9 @@ game.onUpdateInterval(100, function () {
 })
 game.onUpdateInterval(100, function () {
     if (mini_mapa_abierto == false) {
-        perseguir(primer_profesor, nena)
-        perseguir(segundo_profesor, nena)
-        perseguir(tercer_profesor, nena)
+        perseguir(primer_profesor, nena, 60)
+        perseguir(segundo_profesor, nena, 50)
+        perseguir(tercer_profesor, nena, 40)
     } else {
         primer_profesor.follow(nena, 0)
         segundo_profesor.follow(nena, 0)
