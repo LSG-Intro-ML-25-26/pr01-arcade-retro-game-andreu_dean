@@ -4,9 +4,9 @@ namespace SpriteKind {
     export const Info = SpriteKind.create()
 }
 function reanudar_profesores () {
-    perseguir(primer_profesor, alumno, 45)
-    perseguir(segundo_profesor, alumno, 40)
-    perseguir(tercer_profesor, alumno, 35)
+    perseguir(primer_profesor, alumno, 35)
+    perseguir(segundo_profesor, alumno, 30)
+    perseguir(tercer_profesor, alumno, 25)
 }
 // FUNCION GENERAR APUNTES EN MAPA
 function generar_apuntes () {
