@@ -277,5 +277,9 @@ game.onUpdateInterval(100, function () {
         perseguir(primer_profesor, nena)
         perseguir(segundo_profesor, nena)
         perseguir(tercer_profesor, nena)
+    } else {
+        primer_profesor.follow(nena, 0)
+        segundo_profesor.follow(nena, 0)
+        tercer_profesor.follow(nena, 0)
     }
 })
