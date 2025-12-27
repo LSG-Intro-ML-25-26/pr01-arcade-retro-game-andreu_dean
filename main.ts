@@ -192,6 +192,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.splash("Apuntes a recoger: " + objetivo_apuntes_ronda)
 })
+info.onCountdownEnd(function () {
+    reinciando = false
+    controller.moveSprite(nena, 100, 100)
+    perseguir(primer_profesor, nena, 60)
+    perseguir(segundo_profesor, nena, 50)
+    perseguir(tercer_profesor, nena, 40)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     if (location.column == 0) {
         tiles.placeOnTile(nena, tiles.getTileLocation(18, 15))
@@ -199,6 +206,28 @@ scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (
         tiles.placeOnTile(nena, tiles.getTileLocation(1, 7))
     }
 })
+function vida_menos () {
+    reinciando = true
+    controller.moveSprite(nena, 0, 0)
+    primer_profesor.follow(nena, 0)
+    segundo_profesor.follow(nena, 0)
+    tercer_profesor.follow(nena, 0)
+    tiles.placeOnTile(primer_profesor, tiles.getTileLocation(8, 10))
+    spawn_primer_profesor = primer_profesor.tilemapLocation()
+    tiles.placeOnTile(segundo_profesor, tiles.getTileLocation(9, 10))
+    spawn_segundo_profesor = segundo_profesor.tilemapLocation()
+    tiles.placeOnTile(tercer_profesor, tiles.getTileLocation(10, 10))
+    spawn_tercer_profesor = tercer_profesor.tilemapLocation()
+    tiles.placeOnTile(nena, tiles.getTileLocation(8, 3))
+    spawn_alumno = nena.tilemapLocation()
+    info.changeLifeBy(-1)
+    if (info.life() == 0) {
+        game.gameOver(false)
+    } else {
+        game.splash("T'HAN PILLAT COPIANT...")
+        info.startCountdown(3)
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Apuntes, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
     apuntes_recogidos += 1
@@ -215,6 +244,11 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Apuntes, function (sprite, other
         }
         generar_apuntes()
         iniciar_ronda()
+    }
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    if (reinciando == false) {
+        vida_menos()
     }
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -264,6 +298,8 @@ let apuntes_recogidos = 0
 let total_apuntes = 0
 let mini_mapa_abierto = false
 let ronda = 0
+let reinciando = false
+reinciando = false
 info.setScore(0)
 info.setLife(3)
 tiles.setCurrentTilemap(tilemap`nivel1`)
@@ -289,13 +325,9 @@ game.onUpdateInterval(100, function () {
     }
 })
 game.onUpdateInterval(100, function () {
-    if (mini_mapa_abierto == false) {
+    if (mini_mapa_abierto == false && reinciando == false) {
         perseguir(primer_profesor, nena, 60)
         perseguir(segundo_profesor, nena, 50)
         perseguir(tercer_profesor, nena, 40)
-    } else {
-        primer_profesor.follow(nena, 0)
-        segundo_profesor.follow(nena, 0)
-        tercer_profesor.follow(nena, 0)
     }
 })
