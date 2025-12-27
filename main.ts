@@ -204,9 +204,17 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Apuntes, function (sprite, other
     apuntes_recogidos += 1
     info.changeScoreBy(1)
     objetivo_apuntes_ronda += -1
-    if (apuntes_recogidos == total_apuntes) {
+    if (objetivo_apuntes_ronda == 0) {
         ronda += 1
+        if (ronda == 2) {
+            game.splash("SEGONA ENXAMPADA.")
+        } else if (ronda == 3) {
+            game.splash("ENXAMPADA FINAL.")
+        } else if (ronda == 4) {
+            game.gameOver(true)
+        }
         generar_apuntes()
+        iniciar_ronda()
     }
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -227,6 +235,17 @@ function crear_alumno () {
     spawn_alumno = nena.tilemapLocation()
     controller.moveSprite(nena, 100, 100)
     scene.cameraFollowSprite(nena)
+}
+function iniciar_ronda () {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    info.setScore(0)
+    apuntes_recogidos = 0
+    generar_apuntes()
+    crear_alumno()
+    crear_primer_profesor()
+    crear_segundo_profesor()
+    crear_tercer_profesor()
 }
 let spawn_alumno: tiles.Location = null
 let ventana_mini_mapa: Sprite = null
@@ -250,11 +269,8 @@ info.setLife(3)
 tiles.setCurrentTilemap(tilemap`nivel1`)
 ronda = 1
 mini_mapa_abierto = false
-generar_apuntes()
-crear_primer_profesor()
-crear_segundo_profesor()
-crear_tercer_profesor()
-crear_alumno()
+iniciar_ronda()
+game.splash("PRIMERA ENXAMPADA.")
 game.onUpdate(function () {
     if (mini_mapa_abierto == true) {
         ventana_mini_mapa.setPosition(scene.cameraProperty(CameraProperty.X), scene.cameraProperty(CameraProperty.Y))
