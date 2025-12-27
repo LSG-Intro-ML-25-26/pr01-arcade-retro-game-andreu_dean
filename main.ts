@@ -183,10 +183,16 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         mini_mapa_abierto = true
         ventana_mini_mapa.z = 7
         controller.moveSprite(nena, 0, 0)
+        primer_profesor.follow(nena, 0)
+        segundo_profesor.follow(nena, 0)
+        tercer_profesor.follow(nena, 0)
     } else if (mini_mapa_abierto == true) {
         sprites.destroy(ventana_mini_mapa)
         mini_mapa_abierto = false
         controller.moveSprite(nena, 100, 100)
+        perseguir(primer_profesor, nena, 45)
+        perseguir(segundo_profesor, nena, 40)
+        perseguir(tercer_profesor, nena, 35)
     }
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -195,9 +201,9 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 info.onCountdownEnd(function () {
     reinciando = false
     controller.moveSprite(nena, 100, 100)
-    perseguir(primer_profesor, nena, 60)
-    perseguir(segundo_profesor, nena, 50)
-    perseguir(tercer_profesor, nena, 40)
+    perseguir(primer_profesor, nena, 45)
+    perseguir(segundo_profesor, nena, 40)
+    perseguir(tercer_profesor, nena, 35)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     if (location.column == 0) {
@@ -326,8 +332,8 @@ game.onUpdateInterval(100, function () {
 })
 game.onUpdateInterval(100, function () {
     if (mini_mapa_abierto == false && reinciando == false) {
-        perseguir(primer_profesor, nena, 60)
-        perseguir(segundo_profesor, nena, 50)
-        perseguir(tercer_profesor, nena, 40)
+        perseguir(primer_profesor, nena, 45)
+        perseguir(segundo_profesor, nena, 40)
+        perseguir(tercer_profesor, nena, 35)
     }
 })
