@@ -3,19 +3,25 @@ namespace SpriteKind {
     export const Apuntes = SpriteKind.create()
     export const Info = SpriteKind.create()
 }
+function reanudar_profesores () {
+    perseguir(primer_profesor, alumno, 45)
+    perseguir(segundo_profesor, alumno, 40)
+    perseguir(tercer_profesor, alumno, 35)
+}
+// FUNCION GENERAR APUNTES EN MAPA
 function generar_apuntes () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Apuntes)
     total_apuntes = 0
     apuntes_recogidos = 0
     if (ronda == 1) {
-        porcentaje_spawn = 25
+        probabilidad_spawn_paginas = 25
     } else if (ronda == 2) {
-        porcentaje_spawn = 15
+        probabilidad_spawn_paginas = 15
     } else {
-        porcentaje_spawn = 10
+        probabilidad_spawn_paginas = 10
     }
     for (let posicion of tiles.getTilesByType(assets.tile`miMosaico9`)) {
-        if (randint(0, 99) < porcentaje_spawn) {
+        if (randint(0, 99) < probabilidad_spawn_paginas) {
             apunte = sprites.create(assets.image`miImagen1`, SpriteKind.Apuntes)
             tiles.placeOnTile(apunte, posicion)
             total_apuntes += 1
@@ -111,9 +117,32 @@ function crear_segundo_profesor () {
     tiles.placeOnTile(segundo_profesor, tiles.getTileLocation(9, 10))
     spawn_segundo_profesor = segundo_profesor.tilemapLocation()
 }
+function parar_profesores () {
+    primer_profesor.follow(alumno, 0)
+    segundo_profesor.follow(alumno, 0)
+    tercer_profesor.follow(alumno, 0)
+}
+// FUNCION SUMAR APUNTES A PUNTOS
+function sumar_apuntes () {
+    apuntes_recogidos += 1
+    info.changeScoreBy(1)
+    objetivo_apuntes_ronda += -1
+    if (objetivo_apuntes_ronda == 0) {
+        ronda += 1
+        if (ronda == 2) {
+            game.splash("SEGONA ENXAMPADA.")
+        } else if (ronda == 3) {
+            game.splash("ENXAMPADA FINAL.")
+        } else if (ronda == 4) {
+            game.gameOver(true)
+        }
+        generar_apuntes()
+        iniciar_ronda()
+    }
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    nena,
+    alumno,
     assets.animation`nena-animation-down`,
     500,
     false
@@ -121,7 +150,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    nena,
+    alumno,
     assets.animation`nena-animation-right`,
     500,
     false
@@ -167,9 +196,10 @@ function crear_tercer_profesor () {
     tiles.placeOnTile(tercer_profesor, tiles.getTileLocation(10, 10))
     spawn_tercer_profesor = tercer_profesor.tilemapLocation()
 }
+// MOVIMIENTOS ALUMNO
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    nena,
+    alumno,
     assets.animation`nena-animation-left`,
     500,
     false
@@ -182,17 +212,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         ventana_mini_mapa.setPosition(75, 55)
         mini_mapa_abierto = true
         ventana_mini_mapa.z = 7
-        controller.moveSprite(nena, 0, 0)
-        primer_profesor.follow(nena, 0)
-        segundo_profesor.follow(nena, 0)
-        tercer_profesor.follow(nena, 0)
+        controller.moveSprite(alumno, 0, 0)
+        parar_profesores()
     } else if (mini_mapa_abierto == true) {
         sprites.destroy(ventana_mini_mapa)
         mini_mapa_abierto = false
-        controller.moveSprite(nena, 100, 100)
-        perseguir(primer_profesor, nena, 45)
-        perseguir(segundo_profesor, nena, 40)
-        perseguir(tercer_profesor, nena, 35)
+        controller.moveSprite(alumno, 100, 100)
+        reanudar_profesores()
     }
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -200,32 +226,29 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 info.onCountdownEnd(function () {
     reinciando = false
-    controller.moveSprite(nena, 100, 100)
-    perseguir(primer_profesor, nena, 45)
-    perseguir(segundo_profesor, nena, 40)
-    perseguir(tercer_profesor, nena, 35)
+    controller.moveSprite(alumno, 100, 100)
+    reanudar_profesores()
 })
+// FUNCION TELETRANSPORTE
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     if (location.column == 0) {
-        tiles.placeOnTile(nena, tiles.getTileLocation(18, 15))
+        tiles.placeOnTile(alumno, tiles.getTileLocation(18, 15))
     } else {
-        tiles.placeOnTile(nena, tiles.getTileLocation(1, 7))
+        tiles.placeOnTile(alumno, tiles.getTileLocation(1, 7))
     }
 })
+// FUNCION PARA RESTAR VIDA
 function vida_menos () {
     reinciando = true
-    controller.moveSprite(nena, 0, 0)
-    primer_profesor.follow(nena, 0)
-    segundo_profesor.follow(nena, 0)
-    tercer_profesor.follow(nena, 0)
+    controller.moveSprite(alumno, 0, 0)
     tiles.placeOnTile(primer_profesor, tiles.getTileLocation(8, 10))
     spawn_primer_profesor = primer_profesor.tilemapLocation()
     tiles.placeOnTile(segundo_profesor, tiles.getTileLocation(9, 10))
     spawn_segundo_profesor = segundo_profesor.tilemapLocation()
     tiles.placeOnTile(tercer_profesor, tiles.getTileLocation(10, 10))
     spawn_tercer_profesor = tercer_profesor.tilemapLocation()
-    tiles.placeOnTile(nena, tiles.getTileLocation(8, 3))
-    spawn_alumno = nena.tilemapLocation()
+    tiles.placeOnTile(alumno, tiles.getTileLocation(8, 3))
+    spawn_alumno = alumno.tilemapLocation()
     info.changeLifeBy(-1)
     if (info.life() == 0) {
         game.gameOver(false)
@@ -236,21 +259,7 @@ function vida_menos () {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Apuntes, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
-    apuntes_recogidos += 1
-    info.changeScoreBy(1)
-    objetivo_apuntes_ronda += -1
-    if (objetivo_apuntes_ronda == 0) {
-        ronda += 1
-        if (ronda == 2) {
-            game.splash("SEGONA ENXAMPADA.")
-        } else if (ronda == 3) {
-            game.splash("ENXAMPADA FINAL.")
-        } else if (ronda == 4) {
-            game.gameOver(true)
-        }
-        generar_apuntes()
-        iniciar_ronda()
-    }
+    sumar_apuntes()
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     if (reinciando == false) {
@@ -259,23 +268,26 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
-    nena,
+    alumno,
     assets.animation`nena-animation-up`,
     500,
     false
     )
 })
+// FUNCIONES MOVIMIENTO PROFE
 function perseguir (profesor: Sprite, alumno: Sprite, vel: number) {
     profesor.follow(alumno, vel)
 }
+// CREACIÓN DE SPRITES
 function crear_alumno () {
-    nena = sprites.create(assets.image`nena-front`, SpriteKind.Player)
-    nena.z = 6
-    tiles.placeOnTile(nena, tiles.getTileLocation(8, 3))
-    spawn_alumno = nena.tilemapLocation()
-    controller.moveSprite(nena, 100, 100)
-    scene.cameraFollowSprite(nena)
+    alumno = sprites.create(assets.image`nena-front`, SpriteKind.Player)
+    alumno.z = 6
+    tiles.placeOnTile(alumno, tiles.getTileLocation(8, 3))
+    spawn_alumno = alumno.tilemapLocation()
+    controller.moveSprite(alumno, 100, 100)
+    scene.cameraFollowSprite(alumno)
 }
+// FUNCION INICIAR NUEVA RONDA
 function iniciar_ronda () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
     sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
@@ -287,21 +299,22 @@ function iniciar_ronda () {
     crear_segundo_profesor()
     crear_tercer_profesor()
 }
+// INICIO DEL JUEGO
 let spawn_alumno: tiles.Location = null
 let ventana_mini_mapa: Sprite = null
 let mini_mapa: minimap.Minimap = null
 let spawn_tercer_profesor: tiles.Location = null
-let tercer_profesor: Sprite = null
-let nena: Sprite = null
 let spawn_segundo_profesor: tiles.Location = null
-let segundo_profesor: Sprite = null
 let spawn_primer_profesor: tiles.Location = null
-let primer_profesor: Sprite = null
 let objetivo_apuntes_ronda = 0
 let apunte: Sprite = null
-let porcentaje_spawn = 0
+let probabilidad_spawn_paginas = 0
 let apuntes_recogidos = 0
 let total_apuntes = 0
+let tercer_profesor: Sprite = null
+let segundo_profesor: Sprite = null
+let alumno: Sprite = null
+let primer_profesor: Sprite = null
 let mini_mapa_abierto = false
 let ronda = 0
 let reinciando = false
@@ -323,7 +336,7 @@ game.onUpdateInterval(100, function () {
         for (let paginas_apuntes of sprites.allOfKind(SpriteKind.Apuntes)) {
             minimap.includeSprite(mini_mapa, paginas_apuntes, MinimapSpriteScale.Double)
         }
-        minimap.includeSprite(mini_mapa, nena, MinimapSpriteScale.Double)
+        minimap.includeSprite(mini_mapa, alumno, MinimapSpriteScale.Double)
         minimap.includeSprite(mini_mapa, primer_profesor, MinimapSpriteScale.Double)
         minimap.includeSprite(mini_mapa, segundo_profesor, MinimapSpriteScale.Double)
         minimap.includeSprite(mini_mapa, tercer_profesor, MinimapSpriteScale.Double)
@@ -332,8 +345,8 @@ game.onUpdateInterval(100, function () {
 })
 game.onUpdateInterval(100, function () {
     if (mini_mapa_abierto == false && reinciando == false) {
-        perseguir(primer_profesor, nena, 45)
-        perseguir(segundo_profesor, nena, 40)
-        perseguir(tercer_profesor, nena, 35)
+        reanudar_profesores()
+    } else {
+        parar_profesores()
     }
 })
