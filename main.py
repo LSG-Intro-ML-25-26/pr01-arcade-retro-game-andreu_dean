@@ -3,7 +3,6 @@ class SpriteKind:
     Mapa = SpriteKind.create()
     Apuntes = SpriteKind.create()
     Info = SpriteKind.create()
-#FUNCIÓN PARA VOLVER A HACER MOVER AL PROFESOR
 def reanudar_profesores():
     perseguir(primer_profesor, alumno2, 35)
     perseguir(segundo_profesor, alumno2, 30)
@@ -30,7 +29,6 @@ def generar_apuntes():
             tiles.place_on_tile(apunte, posicion)
             total_apuntes += 1
     objetivo_apuntes_ronda = total_apuntes
-#FUNCION PARA CREAR AL PRIMER PROFE
 def crear_primer_profesor():
     global primer_profesor, spawn_primer_profesor
     primer_profesor = sprites.create(img("""
@@ -80,7 +78,6 @@ def crear_primer_profesor():
         """))
     tiles.place_on_tile(primer_profesor, tiles.get_tile_location(8, 10))
     spawn_primer_profesor = primer_profesor.tilemap_location()
-#FUNCION PARA CREAR AL SEGUNDO PROFE
 def crear_segundo_profesor():
     global segundo_profesor, spawn_segundo_profesor
     segundo_profesor = sprites.create(img("""
@@ -122,7 +119,6 @@ def crear_segundo_profesor():
         """))
     tiles.place_on_tile(segundo_profesor, tiles.get_tile_location(9, 10))
     spawn_segundo_profesor = segundo_profesor.tilemap_location()
-#FUNCIÓN PARA DEJAR DE MOVER A LOS PROFES
 def parar_profesores():
     primer_profesor.follow(alumno2, 0)
     segundo_profesor.follow(alumno2, 0)
@@ -162,7 +158,6 @@ def on_right_pressed():
         False)
 controller.right.on_event(ControllerButtonEvent.PRESSED, on_right_pressed)
 
-#FUNCIÓN PARA CREAR AL TERCER PROFE
 def crear_tercer_profesor():
     global tercer_profesor, spawn_tercer_profesor
     tercer_profesor = sprites.create(img("""
@@ -236,7 +231,6 @@ def on_b_pressed():
     game.splash("Apuntes a recoger: " + str(objetivo_apuntes_ronda))
 controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
 
-#FUNCIÓN PARA EL CONTADOR ANTES DE REINICIAR EL JUEGO
 def on_countdown_end():
     global reinciando
     reinciando = False
