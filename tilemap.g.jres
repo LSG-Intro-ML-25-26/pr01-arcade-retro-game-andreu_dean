@@ -70,6 +70,12 @@
         "tilemapTile": true,
         "displayName": "miMosaico9"
     },
+    "tile12": {
+        "data": "hwQQABAAAAAAAAAAAADw/wAAAAAAAPD+AAAAAADw//4AAAAAAPD+/gAAAADw//7+AAAAAPD+/v4AAADw//7+/gAAAPD+/v70AADw//7+/v8AAPD+/v70/wAA8P7+/v//AADw/v70//8AAPD+/v///wAA8P70////AADw/v////8AAPD0/////w==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "escalera"
+    },
     "nivel2": {
         "id": "nivel2",
         "mimeType": "application/mkcd-tilemap",
