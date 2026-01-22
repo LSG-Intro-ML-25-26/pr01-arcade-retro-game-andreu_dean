@@ -130,20 +130,20 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.splash("Apuntes a recoger: " + ("" + objetivo_apuntes_ronda))
 })
-info.onCountdownEnd(function () {
-    reinciando = false
-    controller.moveSprite(alumno2, 100, 100)
-    reanudar_profesores()
-})
 // -------------------------
 // TELETRANSPORTE (una sola)
 // -------------------------
-scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`miMosaico10`, function (sprite, location) {
     if (location.column == 0) {
         tiles.placeOnTile(alumno2, tiles.getTileLocation(18, 15))
     } else {
         tiles.placeOnTile(alumno2, tiles.getTileLocation(1, 7))
     }
+})
+info.onCountdownEnd(function () {
+    reinciando = false
+    controller.moveSprite(alumno2, 100, 100)
+    reanudar_profesores()
 })
 // -------------------------
 // VIDA
