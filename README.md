@@ -1,27 +1,70 @@
-[![Work in MakeCode](https://classroom.github.com/assets/work-in-make-code-8824cc13a1a3f34ffcd245c82f0ae96fdae6b7d554b6539aec3a03a70825519c.svg)](https://classroom.github.com/online_ide?assignment_repo_id=22088652&assignment_repo_type=AssignmentRepo)
- 
+# L'ENXAMPADA DE LA SALLE
+
+## PARTICIPANTES
+
+- **Andreu Riba**  
+  GitHub: [https://github.com/andreuriba ](https://github.com/RibaAndreu) 
+
+- **Dean Martin**  
+  GitHub: [https://github.com/deanmartin  ](https://github.com/iamdeanmartin)
+
+---
+
+## LORE DEL PROYECTO
+
+En **L’enxampada de La Salle** el protagonista es un alumno que está a punto de terminar un examen pero como mira mucho tik tok en clase y **no se ha enterado absolutamente de nada** va a recurrir a la vieja confiable, **COPIAR**.
+
+Para ello deberá **recoger apuntes repartidos aleatoriamente por el instituto** y pasárselos a *ChatGPT* antes de que acabe el tiempo del examen.
+
+Sin embargo, no lo tendrá nada fácil. **Tres profesores del centro** patrullan los pasillos y lo persiguen con el objetivo de **pillarlo copiando y ponerle un 0 como un rosco**.
+
+El objetivo del jugador será **evitar a los profesores**, recoger todos los apuntes necesarios y **escapar del instituto a tiempo**, logrando así aprobar el examen y evitar tener asignaturas para recuperar.
+
+---
+
+## PERSONAJES
+
+### ALUMNO (Jugador)
+
+Es el personaje controlado por el jugador.  
+Debe moverse por el mapa, recoger los apuntes y esquivar a los profesores para no ser pillado.
 
 
-> Open this page at [https://raimonizard.github.io/makecode-arcade-template-nena-mov/](https://raimonizard.github.io/makecode-arcade-template-nena-mov/)
 
-## Use as Extension
+---
 
-This repository can be added as an **extension** in MakeCode.
+### PROFESORES (Enemigos)
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/raimonizard/makecode-arcade-template-nena-mov** and import
+Son los enemigos del juego.  
+Persiguen constantemente al alumno por el mapa y, si lo alcanzan, el jugador pierde una vida.
 
-## Edit this project
+<img width="166" height="166" alt="Captura de pantalla 2026-01-22 a las 6 56 53 p  m" src="https://github.com/user-attachments/assets/944874dd-a943-4463-9567-46583c809dc6" />
 
-To edit this repository in MakeCode.
+<img width="164" height="163" alt="Captura de pantalla 2026-01-22 a las 6 57 13 p  m" src="https://github.com/user-attachments/assets/fed9ceea-b1d2-4d29-bc29-b5a9d0d78d08" />
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/raimonizard/makecode-arcade-template-nena-mov** and click import
+<img width="167" height="164" alt="Captura de pantalla 2026-01-22 a las 6 57 33 p  m" src="https://github.com/user-attachments/assets/6af8c22c-79de-42db-9278-40426ad34b37" />
 
-#### Metadata (used for search, rendering)
+---
 
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+## APUNTES
+
+Los **apuntes** son el elemento clave del juego.  
+Se generan de forma **aleatoria** sobre los sprites de tipo suelo del mapa y deben ser recogidos por el alumno para avanzar de ronda.
+
+<img width="169" height="165" alt="Captura de pantalla 2026-01-22 a las 6 57 53 p  m" src="https://github.com/user-attachments/assets/c383d755-d9f8-4803-ba79-e702290b1b7f" />
+
+---
+
+## MAPA DEL JUEGO
+
+El mapa representa el interior del instituto y está compuesto por diferentes elementos:
+
+- **Parquet**: simula el suelo del instituto y es la zona principal de movimiento.
+- **Escaleras**: permiten simular el cambio de piso entre diferentes zonas del mapa.
+- **Paredes**: marcan los límites del mapa e impiden que el jugador salga del escenario.
+
+Estos elementos permiten recrear un entorno escolar reconocible y funcional para el desarrollo del juego.
+
+---
+
+## VIDEO-DEMO
