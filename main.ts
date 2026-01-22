@@ -84,8 +84,8 @@ function sumar_apuntes () {
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     alumno2,
-    assets.animation`nena-animation-down`,
-    500,
+    assets.animation`myAnim`,
+    200,
     false
     )
 })
@@ -106,8 +106,8 @@ function crear_tercer_profesor () {
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     alumno2,
-    assets.animation`nena-animation-left`,
-    500,
+    assets.animation`myAnim1`,
+    200,
     false
     )
 })
@@ -173,8 +173,8 @@ function vida_menos () {
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     alumno2,
-    assets.animation`nena-animation-up`,
-    500,
+    assets.animation`myAnim0`,
+    200,
     false
     )
 })
