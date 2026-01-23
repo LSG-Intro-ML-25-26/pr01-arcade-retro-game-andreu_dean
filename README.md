@@ -29,7 +29,7 @@ El objetivo del jugador será **evitar a los profesores**, recoger todos los apu
 Es el personaje controlado por el jugador.  
 Debe moverse por el mapa, recoger los apuntes y esquivar a los profesores para no ser pillado.
 
-
+![WhatsApp Image 2026-01-23 at 3 04 09 p  m](https://github.com/user-attachments/assets/5b2e3410-ff9c-4117-bf9c-727f3fb25073)
 
 ---
 
