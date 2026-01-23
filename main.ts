@@ -92,8 +92,8 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     alumno2,
-    assets.animation`nena-animation-right`,
-    500,
+    assets.animation`myAnim2`,
+    200,
     false
     )
 })
@@ -106,7 +106,7 @@ function crear_tercer_profesor () {
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     alumno2,
-    assets.animation`myAnim1`,
+    assets.animation`myAnim3`,
     200,
     false
     )
