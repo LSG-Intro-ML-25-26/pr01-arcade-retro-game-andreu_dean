@@ -93,16 +93,34 @@ function sumar_apuntes() {
         ronda += 1
         if (ronda == 2) {
             game.splash("SEGONA ENXAMPADA.")
+            generar_apuntes()
+            iniciar_ronda()
         } else if (ronda == 3) {
             game.splash("ENXAMPADA FINAL.")
+            generar_apuntes()
+            iniciar_ronda()
         } else if (ronda == 4) {
-            game.gameOver(true)
+            final_escape_patio()
         }
         
-        generar_apuntes()
-        iniciar_ronda()
     }
     
+}
+
+function final_escape_patio() {
+    controller.moveSprite(alumno2, 0, 0)
+    parar_profesores()
+    scene.cameraShake(4, 500)
+    pause(500)
+    scene.setBackgroundImage(assets.image`
+        patio
+        `)
+    game.showLongText(`
+            ¡LO HAS CONSEGUIDO!
+            ¡Corre, corre que me pillan!
+            ¡Saliendo de La Salle a toda prisa!
+            `, DialogLayout.Bottom)
+    game.gameOver(true)
 }
 
 controller.down.onEvent(ControllerButtonEvent.Pressed, function on_down_pressed() {
@@ -240,24 +258,35 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function on_on_overlap2(s
     
 })
 function iniciar_intro() {
-    scene.setBackgroundImage(frontsalle_intro)
+    scene.setBackgroundImage(assets.image`logo`)
     game.showLongText(`
             L'enxampada de La Salle
-            ¡Es hora de COPIAR!
+            Prem 'A'
             `, DialogLayout.Bottom)
-    scene.setBackgroundImage(assets.image`
-        pasillosalle
-        `)
+    scene.setBackgroundImage(assets.image`timer`)
     game.showLongText(`
-            Caminas por el pasillo en silencio...
-            Los nervios se sienten en el aire.
+            Són les 8 del matí.
+            Avui tens l'examen més important del curs.
             `, DialogLayout.Bottom)
-    scene.setBackgroundImage(assets.image`
-        salle
-        `)
+    scene.setBackgroundImage(assets.image`cama`)
     game.showLongText(`
-            Llegas a la clase. El examen va a empezar.
-            ¡Saca las chuletas y que no te vean!
+            T'aixeques del llit amb nervis però decidit.
+            No pots fallar avui.
+            `, DialogLayout.Bottom)
+    scene.setBackgroundImage(assets.image`front`)
+    game.showLongText(`
+            Arribes a La Salle i respires profundament...
+            Això ja comença.
+            `, DialogLayout.Bottom)
+    scene.setBackgroundImage(assets.image`pasillosalle`)
+    game.showLongText(`
+            Camines pel passadís en silenci cap a l'aula.
+            La tensió es nota a l'aire.
+            `, DialogLayout.Bottom)
+    scene.setBackgroundImage(assets.image`salle`)
+    game.showLongText(`
+            Ja ets a la classe. L'examen està a punt de començar.
+            Treu les xules i que no t'enxampin!
             `, DialogLayout.Bottom)
     comenzar_juego()
 }

@@ -62,6 +62,7 @@ def parar_profesores():
         segundo_profesor.follow(alumno2, 0)
     if tercer_profesor:
         tercer_profesor.follow(alumno2, 0)
+
 def sumar_apuntes():
     global apuntes_recogidos, objetivo_apuntes_ronda, ronda
     apuntes_recogidos += 1
@@ -71,12 +72,30 @@ def sumar_apuntes():
         ronda += 1
         if ronda == 2:
             game.splash("SEGONA ENXAMPADA.")
+            generar_apuntes()
+            iniciar_ronda()
         elif ronda == 3:
             game.splash("ENXAMPADA FINAL.")
+            generar_apuntes()
+            iniciar_ronda()
         elif ronda == 4:
-            game.game_over(True)
-        generar_apuntes()
-        iniciar_ronda()
+            final_escape_patio()
+def final_escape_patio():
+    controller.move_sprite(alumno2, 0, 0)
+    parar_profesores()
+    scene.camera_shake(4, 500)
+    pause(500)
+    
+    scene.set_background_image(assets.image("""
+        patio
+        """))
+    game.show_long_text("""
+            ¡LO HAS CONSEGUIDO!
+            ¡Corre, corre que me pillan!
+            ¡Saliendo de La Salle a toda prisa!
+            """,
+        DialogLayout.BOTTOM)
+    game.game_over(True)
 
 def on_down_pressed():
     animation.run_image_animation(alumno2,
@@ -219,30 +238,50 @@ def on_on_overlap2(sprite3, otherSprite2):
 sprites.on_overlap(SpriteKind.enemy, SpriteKind.player, on_on_overlap2)
 
 def iniciar_intro():
-    scene.set_background_image(frontsalle_intro)
+    scene.set_background_image(assets.image("""logo"""))
     game.show_long_text("""
             L'enxampada de La Salle
-            ¡Es hora de COPIAR!
+            Prem 'A'
             """,
         DialogLayout.BOTTOM)
-    scene.set_background_image(assets.image("""
-        pasillosalle
-        """))
+    
+    scene.set_background_image(assets.image("""timer"""))
     game.show_long_text("""
-            Caminas por el pasillo en silencio...
-            Los nervios se sienten en el aire.
+            Són les 8 del matí.
+            Avui tens l'examen més important del curs.
             """,
         DialogLayout.BOTTOM)
-    scene.set_background_image(assets.image("""
-        salle
-        """))
+    
+    scene.set_background_image(assets.image("""cama"""))
     game.show_long_text("""
-            Llegas a la clase. El examen va a empezar.
-            ¡Saca las chuletas y que no te vean!
+            T'aixeques del llit amb nervis però decidit.
+            No pots fallar avui.
             """,
         DialogLayout.BOTTOM)
-        
+
+    scene.set_background_image(assets.image("""front"""))
+    game.show_long_text("""
+            Arribes a La Salle i respires profundament...
+            Això ja comença.
+            """,
+        DialogLayout.BOTTOM)
+
+    scene.set_background_image(assets.image("""pasillosalle"""))
+    game.show_long_text("""
+            Camines pel passadís en silenci cap a l'aula.
+            La tensió es nota a l'aire.
+            """,
+        DialogLayout.BOTTOM)
+
+    scene.set_background_image(assets.image("""salle"""))
+    game.show_long_text("""
+            Ja ets a la classe. L'examen està a punt de començar.
+            Treu les xules i que no t'enxampin!
+            """,
+        DialogLayout.BOTTOM)
+    
     comenzar_juego()
+    
 reinciando = False
 ventana_mini_mapa: Sprite = None
 mini_mapa: minimap.Minimap = None
