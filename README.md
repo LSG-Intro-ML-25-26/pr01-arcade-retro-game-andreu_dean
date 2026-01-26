@@ -62,15 +62,18 @@ El mapa representa el interior del instituto y está compuesto por diferentes el
 - **Parquet**: simula el suelo del instituto y es la zona principal 
 de movimiento.
 
-![WhatsApp Image 2026-01-26 at 10 29 02 p  m](https://github.com/user-attachments/assets/415d96a3-59ac-47ce-852b-c7f77c3abc0f)
+<img src="https://github.com/user-attachments/assets/09734043-0911-420b-934e-6fa47e57de81"
+     width="170" />
 
 - **Escaleras**: permiten simular el cambio de piso entre diferentes zonas del mapa.
 
-![WhatsApp Image 2026-01-26 at 10 29 02 p  m  (1)](https://github.com/user-attachments/assets/f5baba4e-2082-497f-9b40-1c5fcb118951)
+<img src="https://github.com/user-attachments/assets/415d96a3-59ac-47ce-852b-c7f77c3abc0f"
+     width="170" />
 
 - **Paredes**: marcan los límites del mapa e impiden que el jugador salga del escenario.
 
-![WhatsApp Image 2026-01-26 at 10 29 02 p  m  (2)](https://github.com/user-attachments/assets/14bea2ca-8401-497f-a119-38775761e607)
+<img src="https://github.com/user-attachments/assets/f5baba4e-2082-497f-9b40-1c5fcb118951"
+     width="170" />
 
 Estos elementos permiten recrear un entorno escolar reconocible y funcional para el desarrollo del juego.
 
