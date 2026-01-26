@@ -62,7 +62,6 @@ def parar_profesores():
         segundo_profesor.follow(alumno2, 0)
     if tercer_profesor:
         tercer_profesor.follow(alumno2, 0)
-
 def sumar_apuntes():
     global apuntes_recogidos, objetivo_apuntes_ronda, ronda
     apuntes_recogidos += 1
@@ -85,7 +84,7 @@ def final_escape_patio():
     parar_profesores()
     scene.camera_shake(4, 500)
     pause(500)
-    
+  
     scene.set_background_image(assets.image("""
         patio
         """))
@@ -281,7 +280,6 @@ def iniciar_intro():
         DialogLayout.BOTTOM)
     
     comenzar_juego()
-    
 reinciando = False
 ventana_mini_mapa: Sprite = None
 mini_mapa: minimap.Minimap = None
