@@ -20,6 +20,7 @@ Sin embargo, no lo tendrá nada fácil. **Tres profesores del centro** patrullan
 
 El objetivo del jugador será **evitar a los profesores**, recoger todos los apuntes necesarios y **escapar del instituto a tiempo**, logrando así aprobar el examen y evitar tener asignaturas para recuperar.
 
+
 ---
 
 ## PERSONAJES
@@ -72,7 +73,8 @@ de movimiento.
 
 - **Paredes**: marcan los límites del mapa e impiden que el jugador salga del escenario.
 
-
+<img src="https://github.com/user-attachments/assets/7ac3af5e-3ba3-48eb-b406-a1865ca9bfdb"
+     width="170" />
 
 Estos elementos permiten recrear un entorno escolar reconocible y funcional para el desarrollo del juego.
 
