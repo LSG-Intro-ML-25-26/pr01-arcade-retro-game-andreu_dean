@@ -67,13 +67,12 @@ de movimiento.
 
 - **Escaleras**: permiten simular el cambio de piso entre diferentes zonas del mapa.
 
-<img src="https://github.com/user-attachments/assets/415d96a3-59ac-47ce-852b-c7f77c3abc0f"
+<img src="https://github.com/user-attachments/assets/f5baba4e-2082-497f-9b40-1c5fcb118951"
      width="170" />
 
 - **Paredes**: marcan los límites del mapa e impiden que el jugador salga del escenario.
 
-<img src="https://github.com/user-attachments/assets/f5baba4e-2082-497f-9b40-1c5fcb118951"
-     width="170" />
+
 
 Estos elementos permiten recrear un entorno escolar reconocible y funcional para el desarrollo del juego.
 
