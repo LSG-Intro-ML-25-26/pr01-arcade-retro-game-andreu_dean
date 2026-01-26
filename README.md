@@ -65,6 +65,8 @@ El mapa representa el interior del instituto y está compuesto por diferentes el
 
 Estos elementos permiten recrear un entorno escolar reconocible y funcional para el desarrollo del juego.
 
+<img width="300" height="300" alt="Captura de pantalla 2026-01-25 195632" src="https://github.com/user-attachments/assets/a8d0114b-fc21-44c7-a5d2-eba71a2b5f1e" />
+
 ---
 
 ## VIDEO-DEMO
